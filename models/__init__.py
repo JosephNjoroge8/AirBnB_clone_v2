@@ -1,10 +1,12 @@
-#!/usr/bin/env python3
-"""
-Models package initialization for the AirBnB clone project.
-"""
+#!/usr/bin/python3
+"""This module instantiates an object of class FileStorage"""
+import os
+
+from models.engine.db_storage import DBStorage
 from models.engine.file_storage import FileStorage
 
-storage = FileStorage()
+storage = DBStorage() if os.getenv(
+    'HBNB_TYPE_STORAGE') == 'db' else FileStorage()
+"""A unique FileStorage/DBStorage instance for all models.
+"""
 storage.reload()
-
-# Additional initialization code if necessary...
